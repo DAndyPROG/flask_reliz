@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <!-- Базові та системні налаштування сайту (зв'язок між сторінками, шрифти, тощо) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sushi Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Підключення стилів -->
+</head>
+<body>
+    <!-- ОСНОВНИЙ КОНТЕНТ САЙТУ -->
+    <header>
+        <!-- ШАПКА САЙТУ -->
+        <nav>
+            <a href="{{ url_for('index') }}" class="logo-link">
+                <img class="logo-img" src="{{ url_for('static', filename='images/logo.png') }}" alt="Sushi Master logo">
+            </a>
+            
+            <div class="nav-menu">
+                <a class="nav-btn" href="#">Меню</a>
+                <a class="nav-btn" href="#section1">Акції</a>
+                <a class="nav-btn" href="#section2">Товари</a>
+                <a class="nav-btn" href="#section3">Про нас</a>
+                <a class="nav-btn" href="#section4">Контакти</a>
+            </div>
+
+            <div class="nav-right">
+                <div class="search-section">
+                    <form class="search" action="#" method="get">
+                        <input type="text" name="search" placeholder="Пошук">
+                        <button type="submit">Пошук</button>
+                    </form>
+                </div>
+
+                <div class="location-section">
+                    <img class="geo-img" src="{{ url_for('static', filename='images/location-pin.png') }}" alt="Геолокація">
+                    <a class="geo-link" href="#">Знайти Нас</a>
+                </div>
+
+                <div class="user-section">
+                    {% if session.user_id %}
+                        <span class="user-name">{{ session.user_name }}</span>
+                        <a href="{{ url_for('logout') }}" class="nav-btn">Вийти</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="nav-btn login-btn">
+                            <img class="profile-img" src="{{ url_for('static', filename='images/profile.png') }}" alt="profile">
+                            <span>Увійти</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Основний розділ сайту -->
+        <!-- Карусель -->
+        <section id="section1">
+            <h1 class="section-title">Акції</h1>
+            <div id="all">
+                <div id="slider">
+                    <input type="radio" name="slider" id="switch1" checked>
+                    <input type="radio" name="slider" id="switch2">
+                    <input type="radio" name="slider" id="switch3">
+                    <input type="radio" name="slider" id="switch4">
+                    <input type="radio" name="slider" id="switch5">
+
+                    <div id="slides">
+                        <div id="overflow">
+                            <div class="image">
+                                <article>
+                                    <img src="{{ url_for('static', filename='images/slides/Slide1.png') }}" alt="Акція 1">
+                                </article>
+                                <article>
+                                    <img src="{{ url_for('static', filename='images/slides/Slide2.png') }}" alt="Акція 2">
+                                </article>
+                                <article>
+                                    <img src="{{ url_for('static', filename='images/slides/Slide3.png') }}" alt="Акція 3">
+                                </article>
+                                <article>
+                                    <img src="{{ url_for('static', filename='images/slides/Slide4.png') }}" alt="Акція 4">
+                                </article>
+                                <article>
+                                    <img src="{{ url_for('static', filename='images/slides/Slide5.png') }}" alt="Акція 5">
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="controls">
+                        <label for="switch1"></label>
+                        <label for="switch2"></label>
+                        <label for="switch3"></label>
+                        <label for="switch4"></label>
+                        <label for="switch5"></label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Рекомендувані товари -->
+        <section id="section2">
+            <h2 class="section-title">Наші Товари</h2>
+            <div id="products">
+                <article class="product">
+                    <img src="{{ url_for('static', filename='images/products/product1.png') }}" alt="Суші маки">
+                    <div class="product-content">
+                        <h3>Сет Гурман</h3>
+                        <p>Філадельфія з лососем, Кранч з креветкою, Каліфорнія з лососем</p>
+                        <a href="#" class="product-btn">Переглянути</a>
+                    </div>
+                </article>
+                <article class="product">
+                    <img src="{{ url_for('static', filename='images/products/product2.png') }}" alt="Суші маки">
+                    <div class="product-content">
+                        <h3>Комбо Філа Мікс</h3>
+                        <p>Рол з лососем та огірком, Філадельфія з креветкою зі знижкою 50%.</p>
+                        <a href="#" class="product-btn">Переглянути</a>
+                    </div>
+                </article>
+                <article class="product">
+                    <img src="{{ url_for('static', filename='images/products/product3.png') }}" alt="Суші маки">
+                    <div class="product-content">
+                        <h3>Сет Банзай</h3>
+                        <p>Філадельфія дует, Футомакі з креветкою в темпурі, Каліфорнія з вугрем</p>
+                        <a href="#" class="product-btn">Переглянути</a>
+                    </div>
+                </article>
+                <article class="product">
+                    <img src="{{ url_for('static', filename='images/products/product4.png') }}" alt="Суші маки">
+                    <div class="product-content">
+                        <h3>Сет Кіото</h3>
+                        <p>Філадельфія дует, Каліфорнія з лососем в кунжуті, Кранч з креветкою</p>
+                        <a href="#" class="product-btn">Переглянути</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Про Нас -->
+        <section id="section3" class="team-section">
+            <h2 class="section-title">Наша Команда</h2>
+            <div class="team-container">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/team/media1.png') }}" alt="Команда">
+                    </div>
+                    <div class="team-info">
+                        <h3>Команда</h3>
+                        <p>Професійні кухарі</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/team/media2.png') }}" alt="Менеджер">
+                    </div>
+                    <div class="team-info">
+                        <h3>Менеджер</h3>
+                        <p>Керівник закладу</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/team/media3.png') }}" alt="Працівник Року">
+                    </div>
+                    <div class="team-info">
+                        <h3>Працівник Року</h3>
+                        <p>Найкращий співробітник</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="section4" class="footer-content">
+            <div class="footer-left">
+                <img class="logo-img" src="{{ url_for('static', filename='images/logo.png') }}" alt="Sushi Master logo">
+
+                <p>&copy; 2025 Sushi Master. Всі права захищені.</p>
+            </div>
+            <div class="footer-right">
+                <ul>
+                    <li><a href="#">Політика конфіденційності</a></li>
+                    <li><a href="#">Умови використання</a></li>
+                    <li><a href="#">Контакти</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- В кінці body перед закриваючим тегом -->
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

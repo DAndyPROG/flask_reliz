@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sushi Master - Авторизація</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login-styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('index') }}">
+                <img class="logo-img" src="{{ url_for('static', filename='images/logo.png') }}" alt="Sushi Master logo">
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="forms-container">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="flash-message">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <!-- Форма входу -->
+                <div class="form-section" id="login-form">
+                    <h2>Вхід</h2>
+                    <form action="{{ url_for('login') }}" method="POST">
+                        <div class="form-group">
+                            <input type="email" name="email" required placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" required placeholder="Пароль">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="submit-btn">Увійти</button>
+                        </div>
+                        <p class="switch-form-text">
+                            Немає акаунту? <a href="#" id="show-register">Зареєструватися</a>
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Форма реєстрації -->
+                <div class="form-section hidden" id="register-form">
+                    <h2>Реєстрація</h2>
+                    <form action="{{ url_for('register') }}" method="POST" id="registration-form">
+                        <div class="form-group">
+                            <input type="text" name="name" required placeholder="Ім'я">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" required placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" required placeholder="Пароль">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="confirm-password" required placeholder="Підтвердіть пароль">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="submit-btn">Зареєструватися</button>
+                        </div>
+                        <p class="switch-form-text">
+                            Вже маєте акаунт? <a href="#" id="show-login">Увійти</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='login.js') }}"></script>
+</body>
+</html> 
